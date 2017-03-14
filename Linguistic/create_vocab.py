@@ -15,6 +15,7 @@ def clean_word(word):
 	word = word.replace(",","")
 	word = word.replace(".","")
 	word = word.replace("\"","")
+	word = word.replace(";","")
 
 	return word
 
@@ -77,8 +78,9 @@ for file in files:
 			
 			# Extract the third element (transcription) and add to the global vocabulary
 			split = line.split(";")
-			trans = split[2]
-			add_to_vocab(trans)
+			for i in range(len(split)-3):
+				trans = split[i+2]
+				add_to_vocab(trans)
 
 		lineno += 1
 

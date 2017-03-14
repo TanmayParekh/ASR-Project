@@ -12,6 +12,7 @@ def clean_word(word):
 	word = word.replace(",","")
 	word = word.replace(".","")
 	word = word.replace("\"","")
+	word = word.replace(";","")
 
 	return word
 
@@ -38,8 +39,13 @@ def build_feature(line, dataset_file, feature_file, vocab_list):
 	split_line = line.split(';')
 	start_time = split_line[0]
 	end_time = split_line[1]
-	trans = split_line[2]
-	sentiment = split_line[3]
+
+	# Extract the transcription
+	trans = ""
+	for i in range(len(split_line)-3):
+		trans = trans + split_line[i+2]
+
+	sentiment = split_line[-1]
 
 	# Extract words in trans and clean them
 	trans_split = trans.split()
@@ -55,7 +61,7 @@ def build_feature(line, dataset_file, feature_file, vocab_list):
 	feature_line = dataset_file + "," + start_time + "," + end_time
 	for count in feature_count:
 		feature_line += "," + str(count)
-	feature_line += "," + sentiment + "\n"
+	feature_line += "," + (sentiment[:-1]).replace("\"", "") + "\n"
 
 	# Write to file
 	f.write(feature_line)
