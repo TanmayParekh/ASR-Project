@@ -46,8 +46,8 @@ testY = Y[401:]
 
 print "Normal SVM:\n-----------------\n"
 
-# APPLY SVM
-clf = svm.SVC()
+# APPLY SVM and specify kernel
+clf = svm.SVC(kernel='rbf')
 model = clf.fit(trainX, trainY)
 
 # Train Accuracy
@@ -69,7 +69,7 @@ print "Testing Accuracy = " + str(testAccuracy)
 
 print "\n\nK-FOLD:\n-----------------\n"
 
-clf_kfold = svm.SVC()
+clf_kfold = svm.SVC(kernel='rbf')
 scores = cross_val_score(clf_kfold, X, Y, cv=10)
 
-print("Accuracy: %0.2f (+/- %0.2f)" % (scores.mean(), scores.std() * 2))
+print("Accuracy: %0.4f (+/- %0.4f)" % (scores.mean(), scores.std() * 2))
