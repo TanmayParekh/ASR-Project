@@ -92,7 +92,7 @@ def extract_feature(word):
 
 def make_feature():
 
-	vocab = open("extracted_vocab.txt",'r')
+	vocab = open("extracted_vocab_5.txt",'r')
 	vocab_list = []
 
 	for line in vocab:
@@ -101,7 +101,7 @@ def make_feature():
 
 	vocab.close()
 
-	feature_file = open("vocab_embedding.txt",'w')
+	feature_file = open("vocab_embedding_5.txt",'w')
 
 	for word in vocab_list:
 		feature = extract_feature(word)
@@ -111,3 +111,5 @@ def make_feature():
 			feature_file.write(word + "\n")
 
 	feature_file.close()
+
+make_feature()

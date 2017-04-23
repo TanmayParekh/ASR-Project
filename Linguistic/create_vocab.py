@@ -52,7 +52,7 @@ def print_extracted_vocab(file):
 
 	for word in sorted(global_vocab, key=global_vocab.get, reverse=True):
 
-		if (global_vocab[word] >= 10):
+		if (global_vocab[word] >= 5):
 			f.write(word + "\n")
 		else:
 			break
@@ -88,4 +88,4 @@ for file in files:
 
 # Print the vocabulary
 print_vocab("vocab.csv")
-print_extracted_vocab("extracted_vocab.txt")
+print_extracted_vocab("extracted_vocab_5.txt")
